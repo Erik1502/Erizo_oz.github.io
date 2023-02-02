@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,18 +43,19 @@
     .done
     {
         text-decoration: line-through;
+        color: red;
     }
-    .colorPurple
+    .colorBlue
     {
-        background: purple;
+        background: blue;
     }
     .correctlySelected
     {
-        background-color: gray;
+        background-color: yellow;
     }
     #message
     {
-        color: red;
+        color:  #4285F4;
     }
 
 </style>
@@ -61,17 +63,17 @@
     var myWords = ["CLONE", "REPOSITORY","COUPON","REMOTE","SEAT","USER","BLOCK","GIT","DIRTY","FORK"];
 var tempWords = [];
 $(document).ready(function(){
-    alert("RULES\n1. Words could be displayed horizontally, vertically, or diagonally. \n2. To select letter, just click the letters and press ctrl key to check your formed words.  ")
+    alert("RULES\n1. Words could be displayed horizontally, vertically, or diagonally. \n2. To select letter, just click the letters and press ctrl key to check your formed words.  \n3. When creating a word, you should always press the Ctrl key before moving on to another word. \n4. Remember! You should always write words in their proper order; otherwise, it won't be marked correctly.")
     arrangeGame(); 
     var selectedWord = "";
     $(".individual").click(function(){
-        $(this).addClass("colorPurple");
+        $(this).addClass("colorBlue");
         selectedWord += $(this).html();
     });
     $(document).keyup(function(){
         if (selectedWord.length) {
             if (myWords.includes(selectedWord)) {
-                $(".colorPurple").addClass("correctlySelected");
+                $(".colorBlue").addClass("correctlySelected");
                 $("#hint p").each(function(key, item){
                     if(selectedWord == $(item).html()) {
                         $(this).addClass("done");
@@ -79,15 +81,17 @@ $(document).ready(function(){
                 });
                 if ($(".done").length == myWords.length) {
                     $("#hint").empty();
-                    $("#hint").append("<p id=message>WOW! You are great!</p>");
+                    $("#hint").append("<p id=message>WOW! You are great! Bravo!</p>");
                 }
             }
         }
         selectedWord = "";
-        $(".individual").removeClass("colorPurple");
+        $(".individual").removeClass("colorBlue");
     });
 });
-
+/*This function sets up the game. It displays the game rules in an alert and shows the game hints.
+ It creates the 12x12 grid of letters using a nested loop and places the randomly generated letters in each grid cell. 
+ It also places the words to be found in the hint section.*/ 
 function arrangeGame() {
     $("#hint").show();
     myWords.forEach(function(word) {
@@ -106,12 +110,13 @@ function arrangeGame() {
         }
     });
 }
-
+/*This function returns a random letter from the alphabets.*/
 function randomLetter() {
     var alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     return alphabets.charAt(Math.floor(Math.random() * 26));
 }
-
+/*This function checks if the cells specified by the starting point and increment amount are occupied or not. 
+The status of the cells is returned.*/
 function checkOccupied(word, starting, orientation) {
     var status = ""; 
     var incrementBy = 0;
@@ -133,7 +138,8 @@ function checkOccupied(word, starting, orientation) {
     }
     return status;
 }
-
+/*This function places the words to be found in the grid. 
+It uses the checkOccupied function to determine if a specific cell is occupied or not.*/
 function placeCorrectLetters(myArr) {
     var positions = ["row","column","diagonal"];
     var nextLetter = 0; 
@@ -215,7 +221,7 @@ function placeCorrectLetters(myArr) {
                 //console.log(item);
                 $(".individual:eq(" + (newStart+nextPosition) + ")").html(item);
                 $(".individual:eq(" + (newStart+nextPosition) + ")").attr("data-word", myArr[i]);
-                //$(".individual:eq(" + (newStart+nextPosition) + ")").css("background", "pink");
+                //$(".individual:eq(" + (newStart+nextPosition) + ")").css("background", "red");
                 nextPosition += nextLetter;
 
            
