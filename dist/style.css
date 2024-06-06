@@ -1,0 +1,253 @@
+body {
+   display: flex;
+   height: 100vh;
+   align-items: center;
+   justify-content: center;
+   background-color: #005f73;
+   overflow: hidden;
+}
+
+.music-box {
+  position: relative;
+  top:-150px;
+        }
+
+.ballerina {
+            position: absolute;
+            filter: drop-shadow(1px 0 rgba(0,0,0,.3));
+            z-index:2;
+            left: 3px;
+            top:20px;
+            animation: rotate 5s linear infinite reverse;
+        }
+
+.ballerina:before {
+            content:"";
+            position: absolute;
+            width:7px;
+            height:10px;
+            border-radius: 10px 10px 0 0;
+            background-color: #3c3f48; 
+            top:125px;
+            left:4px;
+            box-shadow: 0 3px #333;
+        }
+
+@keyframes rotate {
+            to {transform: rotateY(360deg);}
+        }
+
+.head {
+            position: absolute;
+            background-color: #f8f9fa;
+            border-radius:50%;
+            width: 20px;
+            height: 23px;
+        }
+
+.head:before, .head:after {
+            position: absolute;
+            content:"";
+            background-color: #f8f9fa;    
+        }
+        
+
+.head:before {
+            border-radius:50%;
+            width:12px;
+            height: 12px;
+            top:-3px;
+        }
+        
+
+.head:after {
+            width:5px;
+            height: 15px;
+            top:12px;
+            left:7px;
+        }
+
+.skirt {
+            position: absolute;
+            background-color: #f8f9fa;   
+            width: 15px;
+            height: 40px;
+            border-radius: 50px;
+            top:25px;
+            left:2px;
+        }
+        
+
+.skirt:before, .skirt:after {
+            content:"";
+            position: absolute;
+            background-color: #f8f9fa; 
+            border-radius:50%;
+        }
+
+.skirt:before {
+            width:60px;
+            height:10px;
+            top:30px;
+            left:-22px;
+        }
+        
+
+.skirt:after {
+            width: 10px;
+            height:10px;
+            top:33px;
+            left:-24px;
+            box-shadow: 9px 3px #f8f9fa, 18px 5px #f8f9fa, 27px 7px #f8f9fa, 36px 5px #f8f9fa, 45px 3px #f8f9fa, 54px 0 #f8f9fa, 18px 0 #f8f9fa, 27px 0 #f8f9fa, 24px 0 #f8f9fa, 33px 0 #f8f9fa, 42px 0 #f8f9fa;
+        }
+
+.legs {
+            position: absolute;
+            background-color: #f8f9fa; 
+            width:5px;
+            border-radius:20px;
+            height: 60px;
+            top:65px;
+            left:5px;
+        }
+
+.legs:before, .legs:after {
+            content:"";
+            position: absolute;
+            border-radius:20px;
+            background-color: #f8f9fa; 
+            width:5px;
+        }
+
+.legs:before {
+            height:30px;
+            transform: rotate(-55deg);
+            top:-5px;
+            left:15px;
+        }
+
+.legs:after {
+            transform: rotate(55deg);
+            height:30px;
+            top: 10px;
+            left:15px;
+        }
+
+.right-arm, .left-arm {
+            position: absolute;
+            background-color: #f8f9fa; 
+            border-radius: 20px;
+            width:5px;
+            height: 30px;
+            top:7px;
+        }
+
+.right-arm {
+            left:22px;
+            transform: rotate(50deg);
+        }
+
+.left-arm {
+            transform: rotate(-50deg);
+            left:-8px;
+        }
+
+.right-arm:before, .left-arm:before {
+            content:"";
+            position: absolute;
+            background-color: #f8f9fa; 
+            border-radius: 20px;
+            width:5px;
+            height:30px;
+        }
+
+.right-arm:before {
+            transform: rotate(-90deg);
+            top:-15px;
+            left:-12px;
+        }
+
+.left-arm:before {
+            transform: rotate(-90deg);
+            top:-15px;
+            left:12px;
+        }
+
+input#music {
+  display: none;
+        }
+
+#music:checked ~ .box-inside {
+  transform: translateY(-115px);
+}
+
+.box-inside {
+  position: absolute;
+  transition: .5s;
+  top:110px;
+  left:-10px;
+}
+
+.inner {
+  background-color: #1a232a;
+  position: absolute;
+  width:200px;
+  height:40px;
+  border-radius: 20px 20px 0 0;
+  top:158px;
+  left:-95px;
+}
+
+.box {
+  position: absolute;
+  width: 270px;
+  background-color:#7c293d;
+  height:140px;
+  top:170px;
+  left:-145px;
+  z-index:3;
+  border-radius: 0 0 5px 5px;
+}
+
+.box:before {
+  content:"Music Box";
+  position: absolute;
+  font-size: 30px;
+  font-family: "Brush Script MT", cursive;
+  bottom: 10px;
+  right:15px;
+}
+
+.music {
+  position: absolute;
+  width:270px;
+  background-color: #8d334d;
+  height: 50px;
+  border-radius: 10px 10px 0 0;
+  z-index:10;
+  top:120px;
+  left:-145px;
+  transform-origin: left;
+  transition: .5s;
+  cursor: pointer;
+}
+
+#music:checked + .music {
+  transform: rotate(-125deg) translateX(-20px) translateY(-30px);
+}
+
+.shadow {
+  position: absolute;
+  background-color: rgba(0,0,0,.3);
+  width:350px;
+  height: 30px;
+  border-radius: 50%;
+  top:300px;
+  left:-185px;
+  transition: .5s;
+  transform-origin: right;
+}
+
+#music:checked ~ .shadow {
+  transform: scaleX(1.4);
+}
